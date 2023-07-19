@@ -87,7 +87,7 @@ def apply(
     with torch.no_grad():
         with torch.cuda.amp.autocast(enabled=enable_amp):
             for X in tqdm(dataloader_val, disable=not verbose):
-                X = X.to(device)
+                X = X.float().to(device)
                 prediction = model(X)
                 pls = torch.max(prediction, 1)[1].detach().cpu().numpy().astype(np.uint8)
                 timage_res = np.vstack((timage_res, pls))
