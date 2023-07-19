@@ -35,7 +35,7 @@ def preprocess(
     cip_xnew = []
     cip_box = []
     for imslice in imgmtx:
-        im, box = crop_and_resize(imslice, width=resolution[0], height=resolution[1])
+        im, _, box = crop_and_resize(imslice, width=resolution[0], height=resolution[1])
         cip_xnew.append(im)
         cip_box.append(box)
     return np.asarray(cip_xnew), cip_box
