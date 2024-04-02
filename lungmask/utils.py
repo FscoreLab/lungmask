@@ -110,7 +110,7 @@ class LungLabelsDS_inf(Dataset):
         return len(self.dataset)
 
     def __getitem__(self, idx):
-        return self.dataset[idx, None, :, :].astype(np.float)
+        return self.dataset[idx, None, :, :].astype(np.float32)
 
 
 def read_dicoms(path, primary=True, original=True):
@@ -327,7 +327,7 @@ def cv2_zoom(
     if isinstance(scale, float):
         scale = (scale, scale)
 
-    if img.dtype == np.bool:
+    if img.dtype == bool:
         img = img.astype(np.uint8)
     if np.issubdtype(img.dtype, np.integer) and img.dtype != np.uint8:
         img = img.astype(np.float64)
