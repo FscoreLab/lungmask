@@ -256,7 +256,8 @@ def postrocessing(label_image, spare=[], verbose=True):
             regions[regionlabels.index(mapto)].__dict__["_cache"]["area"] += myarea
 
     outmask_mapped = region_to_lobemap[regionmask]
-    outmask_mapped[outmask_mapped == spare] = 0
+    if spare:
+        outmask_mapped[np.isin(outmask_mapped, spare)] = 0
 
     if outmask_mapped.shape[0] == 1:
         # holefiller = lambda x: ndimage.morphology.binary_fill_holes(x[0])[None, :, :] # This is bad for slices that show the liver
